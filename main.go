@@ -3,18 +3,28 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"text/template"
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello %s", r.URL.Path[1:])
+	renderTemplate(w, "home.html")
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "About")
 }
 
-func about(w http.ResponseWriter, r *http.Request) {
+func contact(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Contact")
+}
+
+func renderTemplate(w http.ResponseWriter, tmpl string) {
+	parsedTemplate, _ := template.ParseFiles("./templates/" + tmpl)
+	err := parsedTemplate.Execute(w, nil)
+	if err != nil {
+		fmt.Println("error parsing template: ", err)
+		return
+	}
 }
 
 func main() {
