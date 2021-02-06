@@ -1,8 +1,9 @@
 package render
 
 import (
+	"bytes"
 	"fmt"
-	// "log"
+	"log"
 	"net/http"
 	"path/filepath"
 	"text/template"
@@ -13,22 +14,38 @@ var functions = template.FuncMap{}
 // RendersTemplate renders templates
 func RendersTemplate(w http.ResponseWriter, tmpl string) {
 
-	// tc, err := CreateTemplateCache()
+	tc, err := CreateTemplateCache()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	t, ok := tc[tmpl]
+	if !ok {
+		log.Fatal(err)
+	}
+
+	buf := new(bytes.Buffer)
+
+	_ = t.Execute(buf, nil)
+
+	_, err = buf.WriteTo(w)
+	if err != nil {
+		fmt.Println("error writing template to browser", err)
+	}
+
+	// Replaced below logic with above logic. Keeping for reference.
+
+	// parsedTemplate, err := template.ParseFiles("./../../templates/" + tmpl)
 	// if err != nil {
-	// 	log.Fatal(err)
+	// 	fmt.Println("error parsing template: ", err)
+	// 	return
 	// }
 
-	parsedTemplate, err := template.ParseFiles("./../../templates/" + tmpl)
-	if err != nil {
-		fmt.Println("error parsing template: ", err)
-		return
-	}
-
-	err = parsedTemplate.Execute(w, nil)
-	if err != nil {
-		fmt.Println("error executing parsed template: ", err)
-		return
-	}
+	// err = parsedTemplate.Execute(w, nil)
+	// if err != nil {
+	// 	fmt.Println("error executing parsed template: ", err)
+	// 	return
+	// }
 }
 
 // CreateTemplateCache creates a template cache as a map.
