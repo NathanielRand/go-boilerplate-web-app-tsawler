@@ -6,14 +6,17 @@ import (
 	"github.com/NathanielRand/GoBnB/pkg/render"
 )
 
+// Home function renders the home page.
 func Home(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "home.page.html")
+	render.RendersTemplate(w, "home.page.html")
 }
 
+// About function renders the about page.
 func About(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "about.page.html")
+	render.RendersTemplate(w, "about.page.html")
 }
 
+// Contact function renders the contact page.
 func Contact(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "contact.page.html")
+	render.RendersTemplate(w, "contact.page.html")
 }

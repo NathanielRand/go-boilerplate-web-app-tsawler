@@ -6,7 +6,7 @@ import (
 	"github.com/NathanielRand/GoBnB/pkg/handlers"
 )
 
-const portNumber = ":80"
+const portNumber = ":8080"
 
 func main() {
 	// Routes
