@@ -16,11 +16,13 @@ func RendersTemplate(w http.ResponseWriter, tmpl string) {
 
 	tc, err := CreateTemplateCache()
 	if err != nil {
+		fmt.Println("error here 1", err)
 		log.Fatal(err)
 	}
 
 	t, ok := tc[tmpl]
 	if !ok {
+		fmt.Println("error here 2", err)
 		log.Fatal(err)
 	}
 
@@ -32,20 +34,6 @@ func RendersTemplate(w http.ResponseWriter, tmpl string) {
 	if err != nil {
 		fmt.Println("error writing template to browser", err)
 	}
-
-	// Replaced below logic with above logic. Keeping for reference.
-
-	// parsedTemplate, err := template.ParseFiles("./../../templates/" + tmpl)
-	// if err != nil {
-	// 	fmt.Println("error parsing template: ", err)
-	// 	return
-	// }
-
-	// err = parsedTemplate.Execute(w, nil)
-	// if err != nil {
-	// 	fmt.Println("error executing parsed template: ", err)
-	// 	return
-	// }
 }
 
 // CreateTemplateCache creates a template cache as a map.
@@ -55,7 +43,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 	myCache := map[string]*template.Template{}
 
 	// 	Find pages in template folder.
-	pages, err := filepath.Glob("./templates/*.pages.html")
+	pages, err := filepath.Glob("./templates/*.page.html")
 	if err != nil {
 		return myCache, err
 	}

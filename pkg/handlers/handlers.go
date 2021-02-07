@@ -15,8 +15,3 @@ func Home(w http.ResponseWriter, r *http.Request) {
 func About(w http.ResponseWriter, r *http.Request) {
 	render.RendersTemplate(w, "about.page.html")
 }
-
-// Contact function renders the contact page.
-func Contact(w http.ResponseWriter, r *http.Request) {
-	render.RendersTemplate(w, "contact.page.html")
-}

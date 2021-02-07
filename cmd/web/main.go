@@ -12,7 +12,6 @@ func main() {
 	// Routes
 	http.HandleFunc("/", handlers.Home)
 	http.HandleFunc("/about", handlers.About)
-	http.HandleFunc("/contact", handlers.Contact)
 
 	// 	Server
 	http.ListenAndServe(portNumber, nil)
