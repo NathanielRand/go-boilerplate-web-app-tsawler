@@ -4,17 +4,35 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/NathanielRand/GoBnB/pkg/config"
 	"github.com/NathanielRand/GoBnB/pkg/handlers"
 	"github.com/NathanielRand/GoBnB/pkg/render"
+	"github.com/alexedwards/scs/v2"
 )
 
 const portNumber = ":8080"
 
+var app config.AppConfig
+
+// Not the same as "session" initilized in main() below.
+var session *scs.SessionManager
+
 func main() {
+	// Change this value to true in production.
+	app.InProduction = false
+
+	// Session information.
+	session := scs.New()
+	session.Lifetime = 24 * time.Hour
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	session.Cookie.Secure = app.InProduction
+
+	app.Session = session
+
 	// Template cache
-	var app config.AppConfig
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache")

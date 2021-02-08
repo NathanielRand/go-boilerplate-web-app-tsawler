@@ -1,20 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<!-- Required meta tags -->
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+{{template "base" .}}
 
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
-		  integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-	<title>GoBnb - About</title>
-</head>
-<body>
-	<div class="container">
+{{define "content"}}
+    <div class="container">
 		<div class="row">
 			<div class="col">
 				<h1>GoBnB</h1>
@@ -22,16 +9,15 @@
 					About Us
                 </h2>
                 <p>Hi there. We are cool, like really! :)</p>
-
                 <p>This came from the template: {{index .StringMap "test"}}</p>
+                <p>
+                    {{ if ne (index .StringMap "remote_ip") ""}}
+                        Your remote IP address is {{index .StringMap "remote_ip"}}
+                    {{else}}
+                        I don't know you IP address yet. Please visit the <a href="/">Home Page</a> so I can set it.
+                    {{end}}
+                </p>
 			</div>
 		</div>
 	</div>
-
-	
-<!-- Bootstrap JS Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
-		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-</script>
-</body>
-</html>
+{{end}}
