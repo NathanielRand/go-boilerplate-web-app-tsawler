@@ -3,34 +3,61 @@ package render
 import (
 	"bytes"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
-	"text/template"
+
+	"github.com/NathanielRand/GoBnB/pkg/config"
+	"github.com/NathanielRand/GoBnB/pkg/models"
 )
 
 var functions = template.FuncMap{}
 
-// RendersTemplate renders templates
-func RendersTemplate(w http.ResponseWriter, tmpl string) {
+var app *config.AppConfig
 
-	tc, err := CreateTemplateCache()
-	if err != nil {
-		fmt.Println("error here 1", err)
-		log.Fatal(err)
+// NewTemplates sets the config for the template package.
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
+
+// AddDefaultData adds data to the templates that needs to be on every page.
+func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+	return td
+}
+
+// RendersTemplate renders templates using http/template.
+func RendersTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+	// Create variable to hold template cache.
+	var tc map[string]*template.Template
+	if app.UseCache {
+		// Get the template cache from the app config.
+		tc = app.TemplateCache
+	} else {
+		// Rebuild the template cache.
+		// (useful for viewing changes to template in Dev, not Production where
+		// the template will not be changed often.)
+		tc, _ = CreateTemplateCache()
 	}
 
+	// Get the requsted template by its string name via
+	// map from the template cache.
 	t, ok := tc[tmpl]
 	if !ok {
-		fmt.Println("error here 2", err)
-		log.Fatal(err)
+		log.Fatal("Could not get template from template cache.")
 	}
 
+	// Create a new buffer.
 	buf := new(bytes.Buffer)
 
-	_ = t.Execute(buf, nil)
+	// Add data that should be present on all templates.
+	td = AddDefaultData(td)
 
-	_, err = buf.WriteTo(w)
+	// Execute the template and data into the buffer.
+	_ = t.Execute(buf, td)
+
+	// Write the buffer contents to the response writer.
+	_, err := buf.WriteTo(w)
 	if err != nil {
 		fmt.Println("error writing template to browser", err)
 	}
@@ -38,7 +65,6 @@ func RendersTemplate(w http.ResponseWriter, tmpl string) {
 
 // CreateTemplateCache creates a template cache as a map.
 func CreateTemplateCache() (map[string]*template.Template, error) {
-
 	// 	Create a cache to store our parsed templates.
 	myCache := map[string]*template.Template{}
 
