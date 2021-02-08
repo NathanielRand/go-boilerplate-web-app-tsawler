@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -18,9 +19,9 @@ func main() {
 	if err != nil {
 		log.Fatal("cannot create template cache")
 	}
-	
+
 	app.TemplateCache = tc
-	// Change to true in production.
+	// Change "UseCache" value to "true" in production.
 	app.UseCache = false
 
 	repo := handlers.NewRepo(&app)
@@ -28,10 +29,12 @@ func main() {
 
 	render.NewTemplates(&app)
 
-	// Routes
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
-
-	// Server
-	http.ListenAndServe(portNumber, nil)
+	// Start web server.
+	fmt.Println(fmt.Sprintf("Starting application on port %s", portNumber))
+	srv := &http.Server{
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+	err = srv.ListenAndServe()
+	log.Fatal(err)
 }
