@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/NathanielRand/go-bnb/pkg/config"
-	"github.com/NathanielRand/go-bnb/pkg/models"
-	"github.com/NathanielRand/go-bnb/pkg/render"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/config"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/models"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/render"
 )
 
 // Repo is the repository used by the handlers.

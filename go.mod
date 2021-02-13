@@ -1,4 +1,4 @@
-module github.com/NathanielRand/go-bnb
+module github.com/NathanielRand/go-boilerplate-web-app-tsawler
 
 go 1.15
 

@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/NathanielRand/go-bnb/pkg/config"
-	"github.com/NathanielRand/go-bnb/pkg/handlers"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/config"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/handlers"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )

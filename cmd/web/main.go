@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/NathanielRand/go-bnb/pkg/config"
-	"github.com/NathanielRand/go-bnb/pkg/handlers"
-	"github.com/NathanielRand/go-bnb/pkg/render"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/config"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/handlers"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/render"
 	"github.com/alexedwards/scs/v2"
 )
 

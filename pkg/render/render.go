@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/NathanielRand/go-bnb/pkg/config"
-	"github.com/NathanielRand/go-bnb/pkg/models"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/config"
+	"github.com/NathanielRand/go-boilerplate-web-app-tsawler/pkg/models"
 )
 
 var functions = template.FuncMap{}
