@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-# github.com/alexedwards/scs v1.4.1
-## explicit
-=======
->>>>>>> dev
 # github.com/alexedwards/scs/v2 v2.4.0
 ## explicit
 github.com/alexedwards/scs/v2
 github.com/alexedwards/scs/v2/memstore
-# github.com/go-chi/chi v1.5.1
+# github.com/go-chi/chi v1.5.2
 ## explicit
 github.com/go-chi/chi
 github.com/go-chi/chi/middleware
 # github.com/justinas/nosurf v1.1.1
 ## explicit
 github.com/justinas/nosurf
-<<<<<<< HEAD
-# golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad
-## explicit
-=======
->>>>>>> dev

@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/NathanielRand/GoBnB/pkg/config"
-	"github.com/NathanielRand/GoBnB/pkg/models"
+	"github.com/NathanielRand/go-bnb/pkg/config"
+	"github.com/NathanielRand/go-bnb/pkg/models"
 )
 
 var functions = template.FuncMap{}

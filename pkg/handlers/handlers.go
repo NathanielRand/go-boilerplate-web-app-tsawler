@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/NathanielRand/GoBnB/pkg/config"
-	"github.com/NathanielRand/GoBnB/pkg/models"
-	"github.com/NathanielRand/GoBnB/pkg/render"
+	"github.com/NathanielRand/go-bnb/pkg/config"
+	"github.com/NathanielRand/go-bnb/pkg/models"
+	"github.com/NathanielRand/go-bnb/pkg/render"
 )
 
 // Repo is the repository used by the handlers.
