@@ -11,7 +11,7 @@
                 <p>Hi there. We are cool, like really! :)</p>
                 <p>This came from the template: {{index .StringMap "test"}}</p>
                 <p>
-                    {{ if ne (index .StringMap "remote_ip") ""}}
+                    {{if ne (index .StringMap "remote_ip") ""}}
                         Your remote IP address is {{index .StringMap "remote_ip"}}
                     {{else}}
                         I don't know you IP address yet. Please visit the <a href="/">Home Page</a> so I can set it.

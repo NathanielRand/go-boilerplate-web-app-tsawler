@@ -24,7 +24,7 @@ func main() {
 	app.InProduction = false
 
 	// Session information.
-	session := scs.New()
+	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
 	session.Cookie.SameSite = http.SameSiteLaxMode
@@ -54,5 +54,7 @@ func main() {
 		Handler: routes(&app),
 	}
 	err = srv.ListenAndServe()
-	log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
